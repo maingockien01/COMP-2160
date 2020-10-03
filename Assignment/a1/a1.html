@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Programming practices" />
+  <title>COMP 2160 – Assignment 1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style>
+body { margin: 20px; font-family: Lato,'Lucida Sans Unicode','Lucida Grande',sans-serif; line-height: 1.5em; } 
+table { border-collapse: collapse; } 
+table,th,td { border: 1px solid #ddd; padding: 10px; margin: 10px; } 
+del, del > a, del > mark > a {color: lightgray; text-decoration-color: lightgray;} 
+ins > a {text-decoration-line: underline; text-decoration-style: wavy} 
+pre > code {background: black; color: white; padding: 1em; font-family: monospace; line-height: normal; display: block;}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">COMP 2160 &ndash; Assignment 1</h1>
+<p class="author">Programming practices</p>
+<p class="date">Due October <sup>9th</sup>, 2020 at 11:59pm</p>
+</header><nav id="TOC">
+<ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#objectives">Objectives</a></li>
+<li><a href="#question-1-ntextth-word">Question 1: <span class="math inline"><em>Pretty</em></span></a></li>
+<li><a href="#question-2-levenshtein">Question 2: Levenshtein</a></li>
+<li><a href="#submitting-your-assignment">Submitting your assignment</a></li>
+<li><a href="#evaluation">Evaluation</a></li>
+</ul>
+</nav>
+<h1 id="description">Description</h1>
+<p>In this assignment you will translate two Java programs into equivalent C programs. You will have to make significant syntactical changes to the methods (including their signature) when translating from Java to C. You must use the approaches described in class for managing, passing, modifying, and returning strings (remember: strings in C are arrays of <code>char</code>).</p>
+<p>Before attempting to solve the questions, make sure to <strong>understand</strong> the original programs.</p>
+<p>Nevertheless, you&rsquo;re expected to <em>translate</em> the provided code as-is &ndash; do not deviate too far from the provided implementations.</p>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Read the <em>entire</em> assignment document before starting.</li>
+<li>Make sure you run the Java implementations for each question so that you know what the expected output should be.</li>
+<li>Please be sure to follow the <a href="../programming-standards.html">programming standards</a>; not doing so will result in a loss of marks.</li>
+<li>Remember to complete the Honesty Declaration Checklist (you will not receive scores for your assignments until the checklist is completed).</li>
+<li>All submitted assignments will be scanned with automated software to monitor for academic integrity violations.</li>
+<li>Your assignment code must be handed in electronically. See the Submitting your assignment section below for more information.</li>
+<li>Late assignments are not accepted. The due date is enforced electronically.</li>
+</ul>
+<h1 id="objectives">Objectives</h1>
+<ul>
+<li>Write software using an unfamiliar programming language <em>idiomatically</em>.
+<ul>
+<li>Basic memory management (arrays and strings)</li>
+<li>Recursion</li>
+</ul>
+</li>
+</ul>
+<h1 id="question-1-ntextth-word">Question 1: <span class="math inline"><em>Pretty</em></span></h1>
+<p>Take the Java program <a href="Nthword.java"><code></code></a><code><a href="/d2l/common/dialogs/quickLink/quickLink.d2l?ou=408555&amp;type=content&amp;rcode=UManitoba-1320118" target="_blank" rel="noopener">Pretty.java</a></code> and convert it to the equivalent C program.</p>
+<p>You can use the file <a href="nthword.txt"><code></code></a><code><a href="/d2l/common/dialogs/quickLink/quickLink.d2l?ou=408555&amp;type=content&amp;rcode=UManitoba-1320117" target="_self">in.txt</a></code> as sample input for your program.</p>
+<h2 id="notes-1">Notes</h2>
+<ul>
+<li>You <strong>must</strong> read input from standard input. Your program will be evaluated by the grader by passing an input file to your program on standard input using the redirection operator <code>&lt;</code>.</li>
+</ul>
+<h1 id="question-2-levenshtein">Question 2: Levenshtein</h1>
+<p>Take the recursive Java program <a href="Levenshtein.java"><code>Levenshtein.java</code></a> and convert it to the equivalent C program.</p>
+<p><strong>Tip</strong>: You have explicit permission to copy/paste the <code>main</code> method for this question, replacing instances of <code>System.out.println</code> with <code>printf</code>, where appropriate.</p>
+<h2 id="notes-2">Notes</h2>
+<ul>
+<li>You can get the <code>assert</code> function from <code>assert.h</code>.</li>
+<li>Try running the Java program on the CS macOS machines. You can compile and run the program following the instructions discussed in class.
+<ul>
+<li>Assertions are disabled by default. You can enable assertions by running <code>java -ea Levenshtein</code>. How does this affect the runtime?</li>
+</ul>
+</li>
+<li>Pay careful attention to the <em>structure</em> of this program.
+<ul>
+<li>This program implements <em>test scaffolding</em> &ndash; you will be expected to write scaffolding for your own code in later assignments.</li>
+</ul>
+</li>
+</ul>
+<h1 id="submitting-your-assignment">Submitting your assignment</h1>
+<p>Create a directory called <code>comp2160-a1-&lt;yourlastname&gt;-&lt;yourstudentid&gt;</code>, and place your <code>.c</code> files inside the directory.</p>
+<p>Then run the command:</p>
+<div class="sourceCode" id="cb1">
+<pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="ex">handin</span> 2160 a1 comp2160-a1-<span class="op">&lt;</span>yourlastname<span class="op">&gt;</span>-<span class="op">&lt;</span>yourstudentid<span class="op">&gt;</span></a></code></pre>
+</div>
+<ul>
+<li>You may <em>optionally</em> include a <code>README</code> file in your directory that explains anything unusual about compiling or running your programs.</li>
+<li>You may resubmit your assignment as many times as you want, but <strong>only the latest</strong> submission will be kept.</li>
+<li>We only accept homework submissions via <code>handin</code>. Please <strong>do not</strong> e-mail your homework to the instructor or TAs &ndash; it will be ignored.</li>
+<li>You <strong>must</strong> submit an Honesty Declaration (digitally on UM Learn). Assignments submitted without a corresponding Honesty Declaration <strong>will not be graded</strong>.</li>
+<li>We reserve the right to refuse to grade the homework, or to deduct marks if these instructions are not followed.</li>
+</ul>
+<h1 id="evaluation">Evaluation</h1>
+<p>Your assignment is worth 10 points, 5 points per question.</p>
+<p>Note that your code <strong>must</strong> compile &ndash; no part marks will be given for code that does not compile.</p>
+<h2 id="warnings">Warnings</h2>
+<p>The code you write should compile with <code>clang -Wall</code> <em>without</em> any warnings. A 1 point penalty will be applied to your score for <em>each</em> warning that is emitted by the compiler.</p>
+<h2 id="question-1">Question 1</h2>
+<table><colgroup> <col style="width: 10%;" /> <col style="width: 89%;" /> </colgroup>
+<thead>
+<tr class="header">
+<th>Level</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>
+<ul>
+<li>No submission for Q1 is made, or</li>
+<li>The submitted code does not compile on <code>rodents.cs.umanitoba.ca</code> with the expected compilation command.</li>
+</ul>
+<code>clang -Wall &lt;yourfile.c&gt; -o &lt;yourfile&gt;</code></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>
+<ul>
+<li>Code is submitted for the problem, and the code compiles.</li>
+<li>The compiled code crashes, does not run, or does not complete in a reasonable amount of time (&lt; 5 seconds) when executed with a file being supplied with the redirection operator (<code>&lt;</code>).</li>
+</ul>
+</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>
+<ul>
+<li>The criteria for 1 is met.</li>
+<li>The program works with the redirection operator (<code>&lt;</code>).</li>
+<li>The program produces the <strong>correct</strong> output but <strong>does not</strong> handle the newlines correctly. Incorrect output does not meet this criteria.</li>
+</ul>
+</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>
+<ul>
+<li>The criteria for 2 is met.</li>
+<li>The program produces the <strong>correct</strong> output and handles the newlines correctly. Incorrect output does not meet this criteria.</li>
+<li>The structure of the written code differs <em>too much</em> from the original Java implementation (i.e., <code></code> control structures in the Java implementation are not present in the C implementation).</li>
+</ul>
+</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>
+<ul>
+<li>The criteria for 3 is met.</li>
+<li>The structure of the written code differs from the original Java implementation only as much as is necessary (i.e., using appropriate corresponding functions from C libraries).</li>
+</ul>
+</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>
+<ul>
+<li>The criteria for 4 is met.</li>
+<li>The C code is of high quality, following the standards described in the <a href="../programming-standards.html">programming standards</a> document.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<h2 id="question-2">Question 2</h2>
+<table><colgroup> <col style="width: 10%;" /> <col style="width: 89%;" /> </colgroup>
+<thead>
+<tr class="header">
+<th>Level</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>
+<ul>
+<li>No submission for Q2 is made, or</li>
+<li>The submitted code does not compile on <code>rodents.cs.umanitoba.ca</code> with the expected compilation command.</li>
+</ul>
+<code>clang -Wall &lt;yourfile.c&gt; -o &lt;yourfile&gt;</code></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>
+<ul>
+<li>Code is submitted for the problem, and the code compiles.</li>
+<li>The compiled code crashes or does not run when executed.</li>
+</ul>
+</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>
+<ul>
+<li>The criteria for 1 is met.</li>
+<li>The compiled code runs, but one or more of the test cases does not have the expected outcome. The expected outcome is that exactly two test cases fail in the C version (as commented in the original Java implementation).</li>
+</ul>
+</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>
+<ul>
+<li>The criteria for 2 is met.</li>
+<li>Exactly two test cases fail in the C implementation (as commented in the original Java implementation).</li>
+<li>All <code>assert</code>ions in the Java implementation are present for in the C implementation.</li>
+<li>The structure of the written code differs <em>too much</em> from the original Java implementation (i.e., control structures in the Java implementation are not present in the C implementation).</li>
+</ul>
+</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>
+<ul>
+<li>The criteria for 3 is met.</li>
+<li>The structure of the written code differs from the original Java implementation only as much as is necessary (i.e., array length in function signatures, using appropriate corresponding functions from C libraries, or writing new functions where no such standard library implementation exists).</li>
+</ul>
+</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>
+<ul>
+<li>The criteria for 5 is met.</li>
+<li>The C code is of high quality, following the standards described in the <a href="../programming-standards.html">programming standards</a> document.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
