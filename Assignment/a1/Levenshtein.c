@@ -1,3 +1,15 @@
+//----------------------------------------------------------------
+// NAME:		KIEN MAI
+// STUDENT NUMBER:	7876083
+// COURSE: 		COMP 2160, SECTION A02
+// INSTRUCTOR		Dr. Eskicioglu
+// ASSIGNMENT: 		#1
+//
+// REMARKS: 		Test function levenshtein that calculate
+//			steps needed to change a word to another
+//
+//----------------------------------------------------------------
+
 #include<stdio.h>
 #include<string.h>
 
