@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Programming practices" />
+  <title>COMP2160 – Lab 2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style>
+body { margin: 20px; font-family: Lato,'Lucida Sans Unicode','Lucida Grande',sans-serif; line-height: 1.5em; } 
+table { border-collapse: collapse; } 
+table,th,td { border: 1px solid #ddd; padding: 10px; margin: 10px; } 
+del, del > a, del > mark > a {color: lightgray; text-decoration-color: lightgray;} 
+ins > a {text-decoration-line: underline; text-decoration-style: wavy} 
+pre > code {background: black; color: white; padding: 1em; font-family: monospace; line-height: normal; display: block;}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">COMP2160 &ndash; Lab 3</h1>
+<p class="author"><span style="font-size: 14pt;">Programming Practices</span></p>
+</header><nav id="TOC">
+<ul>
+<li><a href="#objectives">Objectives</a></li>
+<li><a href="#things-to-do-before-the-lab">Things to do <em>before</em> the lab</a></li>
+<li><a href="#exercise">Exercise</a></li>
+<li><a href="#completion">Completion</a></li>
+</ul>
+</nav>
+<h1 id="objectives">Objectives</h1>
+<ul>
+<li>Declare, initialize, and use strings in a C program.</li>
+<li>Design: thinking about a problem <em>before</em> coding it.</li>
+</ul>
+<h1 id="things-to-do-before-the-lab">Things to do <em>before</em> the lab</h1>
+<p>Read <strong>Column 3</strong> of <em>Programming Pearls</em> prior to completing the lab. While you&rsquo;re reading the column, make sure that you&rsquo;re taking note of the importance of thinking a problem through <em>before</em> writing any code, and that the best way to approach designing a solution to a problem is to <em>let the <strong>data</strong> structure the program</em>.</p>
+<p><strong>Tip</strong>: Do <em>not</em> just start coding. After you&rsquo;ve finished reading the column, &hellip;, er, after you&rsquo;ve bought the book, <em>then</em> finished reading the column, go back and read the last paragraph again, it starts with <em>Let the data structure the program</em>. Go ahead, I&rsquo;ll wait.</p>
+<p>&hellip;</p>
+<p>After you&rsquo;ve finished reading the last paragraph of the column, go back and read the <em>very last sentence</em>. I won&rsquo;t wait very long this time, it&rsquo;s just a sentence.</p>
+<p>Before you start coding on this problem, consider for yourself:</p>
+<ol type="1">
+<li>What is the <strong>input</strong> or <strong>inputs</strong> to this problem? How is it formatted?</li>
+<li>What does the <strong>output</strong> <em>look</em> like?</li>
+<li>How might the input or inputs be <strong>transformed</strong> into the output?</li>
+</ol>
+<p>Next, look carefully at the skeleton code that&rsquo;s provided. Yes, it&rsquo;s C, it&rsquo;s different. <em>Trace</em> the code mentally. Use a piece of paper and a pencil. What does the current code do with or to the inputs?</p>
+<h1 id="exercise">Exercise</h1>
+<p>Do problem 6 of Column 3. Here are test files for the <a href="template.txt">template</a> and <a href="data.txt">data</a>, as given on page 24. Here&rsquo;s some <a href="merge-start.c">skeleton</a> code to help get you started &ndash; the point is for you to do the input processing. Also note that the textbook provides a pseudo-code solution for this problem.</p>
+<p>The easiest way to process the customer data is to <strong>tokenize</strong> it. You&rsquo;ll have to store the data in an array &ndash; the skeleton defines this for you, and assumes that there are always 9 fields and a maximum of 30 characters per field (don&rsquo;t worry about error checking for the lab&hellip;).</p>
+<p>The template file is best processed <strong>character by character</strong> looking for variable markers (the <code>$</code> sign). Note that this is the <em>exact same processing</em> that <code>printf()</code> uses when processing the formatting string. You have to process the file for each customer &ndash; it&rsquo;s easier to <em>re-read</em> the file repeatedly rather than store it in a buffer (the system has it buffered anyway). Note how the skeleton code doesn&rsquo;t open/close the file, it uses the <code>rewind()</code> function (see <code>man rewind</code>).</p>
+<h1 id="completion">Completion</h1>
+<p>To earn complete marks for this lab, you must submit your program (.c) file and a screenshot of the output when running the program using the test files provided above <strong>within 24 hours of your lab time slot</strong>.</p>
+<p>To submit your lab 3 work. At the prompt on one of the rodents use the following command:</p>
+<p><strong>handin 2160 lab3 lab3-lastname-firstname</strong><br /><br />The <strong>lab3-lastname-firstname</strong> is the <strong>directory</strong>, where you put the required code and other document.</p>
+</body>
+</html>

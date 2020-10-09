@@ -1,0 +1,4 @@
+Public|Jane|Q|Ms.|600|Maple Street|Your Town|Iowa|12345
+Penner|Fred|R|Mr.|123|that Street|Winnipeg|MB|R3T 2N2
+Gardner|Mark|E|Mr.|76|The Avenue|Toronto|ON|M5W 1E6
+Acton|Hilda|P|Mrs.|66|What Blvd|Winnipeg|MB|R3T 2N2
