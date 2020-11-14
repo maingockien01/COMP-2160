@@ -3,13 +3,9 @@
 
 
 int main() {
-    char letter;
-    while (scanf("%c", &letter) != EOF) {
-        printf("%c", letter);
-    };
+    char test[12] = "I am Kevin.";
+    char* substring = &test[1];
 
-
-    printf("---> %d", EOF == '\0');
-
+    printf("%s", substring);
     return 0;
 }
