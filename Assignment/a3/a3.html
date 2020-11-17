@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Programming practices" />
+  <title>COMP 2160 – Assignment 3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style>
+body { margin: 20px; font-family: Lato,'Lucida Sans Unicode','Lucida Grande',sans-serif; line-height: 1.5em; } 
+table { border-collapse: collapse; } 
+table,th,td { border: 1px solid #ddd; padding: 10px; margin: 10px; } 
+del, del > a, del > mark > a {color: lightgray; text-decoration-color: lightgray;} 
+ins > a {text-decoration-line: underline; text-decoration-style: wavy} 
+pre > code {background: black; color: white; padding: 1em; font-family: monospace; line-height: normal; display: block;}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">COMP 2160 &ndash; Assignment 3</h1>
+<p class="author">Programming practices</p>
+<p class="date">Due November 20<sup>th</sup>, 2020 at 11:59pm</p>
+</header><nav id="TOC">
+<ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#objectives">Objectives</a></li>
+<li><a href="#question-1-container">Question 1: Table</a></li>
+<li><a href="#question-2-black-box-testing">Question 2: Black-box testing</a></li>
+<li><a href="#submitting-your-assignment">Submitting your assignment</a></li>
+<li><a href="#evaluation">Evaluation</a></li>
+</ul>
+</nav>
+<h1 id="description">Description</h1>
+<p>In assignment 3 we&rsquo;re going to apply what we&rsquo;ve learned about interfaces, testing, and multi-file compilation.</p>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Read the <em>entire</em> assignment document before starting.</li>
+<li>Your programs must run correctly both with assertions enabled and disabled (when compiled with and without the <code>-DNDEBUG</code> option).</li>
+<li>Please be sure to follow the <a href="../programming-standards.html">programming standards</a>; not doing so will result in a loss of marks.</li>
+<li>All submitted assignments will be scanned with automated software to monitor for academic integrity violations.</li>
+<li>Your assignment code must be handed in electronically. See the Submitting your assignment section below for more information.</li>
+<li>Late assignments are not accepted. The due date is enforced electronically.</li>
+</ul>
+<h1 id="objectives">Objectives</h1>
+<ul>
+<li>Building implementations for an ADT.</li>
+<li>Multi-file compilation.</li>
+<li>Testing.</li>
+</ul>
+<h1 id="question-1-container">Question 1: Table</h1>
+<p>For question 1, you&rsquo;re going to implement an abstract data type (a &ldquo;table&rdquo;). You&rsquo;re going to provide an implementation of that ADT with a linked list.</p>
+<p>A table is an abstract data type that allows for a few simple operations on a collection of data:</p>
+<ol>
+<li>Insertion</li>
+<li>Removal</li>
+<li>Searching for presence</li>
+<li>Iteration</li>
+</ol>
+<p>The interface for the table ADT is provided to you in <a href="/d2l/common/dialogs/quickLink/quickLink.d2l?ou=408555&amp;type=content&amp;rcode=UManitoba-1388374" target="_blank" rel="noopener">table.h</a>.&nbsp; Create an implementation for table ADT. Ensure to apply the concepts of design by contract (DbC) to your implementation. You can look at linked list code <a href="/d2l/common/dialogs/quickLink/quickLink.d2l?ou=408555&amp;type=content&amp;rcode=UManitoba-1388376" target="_self">linkedList.c</a> to get some ideas on how to implement table ADT.&nbsp;</p>
+<p>Your table implementation must ensure that <b>values inserted are unique, and internally sorted</b> within a linked list. This is an implementation detail of your table, and not part of the public interface.</p>
+<h2 id="the-tests">The tests</h2>
+<p>Finally, you should build an automated test suite for your table implementation. Be sure to <b>only</b> test what is known from the public interface.</p>
+<p>Your test suite should be implemented in a file called <code>main.c</code>, and you should be sure to test all functions in the file with both general case and edge case test data.</p>
+<p>Tests should be organized appropriately into their own functions.</p>
+<p>Your test suite should report:</p>
+<ol type="1">
+<li>Progress: a statement about what the test is testing (i.e., &ldquo;searching for X&rdquo;)</li>
+<li>Success: a statement about whether or not the test succeeded (i.e., &ldquo;FAILED: expected to find X, but could not find it.&rdquo; or &ldquo;SUCCESS: expected to find X and found it.&rdquo;)</li>
+<li>Summary: a summary of the number of tests run, the number of tests passed, and the number of tests failed.</li>
+</ol>
+<p>You should refer back to the Levenshtein implementation in Assignment 1 to get an idea of what a testing suite that matches this description looks like.</p>
+<h2 id="building">Building</h2>
+<p>Your solution for question 1 must include a <code>Makefile</code>. The grader should only have to type the command <code>make</code> in your directory to build your assignment. Your <span style="font-family: 'courier new', courier, sans-serif;">Makefile</span> should contain a <span style="font-family: 'courier new', courier, sans-serif;">clean</span> rule that when invoked, it will remove all the temporary files but the sources.</p>
+<h1 id="question-2-black-box-testing">Question 2: Black-box testing</h1>
+<p>You have been provided with an implementation of a <a href="https://en.wikipedia.org/wiki/Set_(abstract_data_type)" target="_blank" rel="noopener">set ADT</a> developed by a third-party. The implementation consists of a header file <a href="set.h"><code>set.h</code></a> that defines the interface and a compiled object file with the implementation.</p>
+<p>Your job is to verify that the third-party developer is not a terrible programmer (hint: they <em>aren&rsquo;t</em> terrible, they&rsquo;re <strong>really</strong> terrible).</p>
+<p>You should implement a complete test suite for the set ADT and provide a report (in a <a href="https://guides.github.com/features/mastering-markdown/" target="_blank" rel="noopener">Markdown-formatted</a> <code>README</code> file) explaining what is broken with the implementation of the set that this <strong>really</strong>, <em>really</em> terrible programmer has given to you.</p>
+<p>You should use the testing suite you built in question 1 as a basis for the testing suite you build here.</p>
+<h2 id="the-first-set">The first set</h2>
+<p>You have been provided with <strong>one</strong> implementation of the set by a <em>competent</em> programmer. The implementation is in a file called <a href="set.o"><code>set.o</code></a> that has been compiled on rodents (macOS). The first implementation that you&rsquo;re being provided with is 100% correct &ndash; none of the functions in this file are implemented incorrectly, there are no bugs in this implementation.</p>
+<h2 id="the-tests-1">The tests</h2>
+<p>Your job is to write a complete test suite for the implementation of a set.</p>
+<p>Your test suite should be implemented in a file called <code>main.c</code>, and you should be sure to test all functions in the file with both general case and edge case test data. Also note that there&rsquo;s a function called <code>validateMemUse()</code> that can be used to verify that all instances of <code>Set</code> that were created have been destroyed &ndash; your test suite should use this function to check for memory leaks.</p>
+<p>Tests should be organized appropriately into their own functions.</p>
+<p>Your test suite should report:</p>
+<ol type="1">
+<li>Progress: a statement about what the test is testing (i.e., &ldquo;searching for X&rdquo;)</li>
+<li>Success: a statement about whether or not the test succeeded (i.e., &ldquo;FAILED: expected to find X, but could not find it.&rdquo; or &ldquo;SUCCESS: expected to find X and found it.&rdquo;)</li>
+<li>Summary: a summary of the number of tests run, the number of tests passed, and the number of tests failed.</li>
+</ol>
+<p>For the set implementation that&rsquo;s provided above, all of the tests you write <strong>will pass</strong>.</p>
+<h2 id="the-other-sets">The <em>other</em> sets</h2>
+<p>Closer to the due date, we will provide you with 5 more implementations of a set that implement the same interface. You will use the test suite that you wrote for the <em>correct</em> implementation of a set to determine what (if anything) is wrong with each of the set implementations that you&rsquo;re provided with.</p>
+<p>You must write a brief analysis for each file in a file called <code>README.md</code>. <code>README.md</code> should be a <a href="https://guides.github.com/features/mastering-markdown/" target="_blank" rel="noopener">Markdown-formatted</a> file (use headings!).</p>
+<p>While the code we will provide to you is <em>buggy</em>, it <strong>will not crash</strong>. If you receive any error messages (segmentation fault, abort, bus error), the crash is happening in <strong>your</strong> code. When this happens, your strategy should be to re-read the comments in the set interface to better understand what each function does/requires. If you still can&rsquo;t figure out why your tests are crashing, you should pull out your debugger and debug your code.</p>
+<h1 id="submitting-your-assignment">Submitting your assignment</h1>
+<p>Create a directory called <code>comp2160-a3-&lt;yourlastname&gt;-&lt;yourstudentid&gt;</code>. Within that directory, create a directory for each of Q1 and Q2, where you will put your respective files for each problem.</p>
+<p>Then run the command:</p>
+<div class="sourceCode" id="cb1">
+<pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="ex">handin</span> 2160 a3 comp2160-a3-<span class="op">&lt;</span>yourlastname<span class="op">&gt;</span>-<span class="op">&lt;</span>yourstudentid<span class="op">&gt;</span></a></code></pre>
+</div>
+<ul>
+<li>You may optionally include a <code>README</code> file in the root of your directory that explains anything unusual about compiling or running your programs.</li>
+<li>You may resubmit your assignment as many times as you want, but <strong>only the latest</strong> submission will be kept.</li>
+<li>We only accept homework submissions via <code>handin</code>. Please <strong>do not</strong> e-mail your homework to the instructor or TAs &ndash; it will be ignored.</li>
+<li>You <strong>must</strong> submit an Honesty Declaration (digitally on UM Learn). Assignments submitted without a corresponding Honesty Declaration <strong>will not be graded</strong>.</li>
+<li>We reserve the right to refuse to grade the homework, or to deduct marks if these instructions are not followed.</li>
+</ul>
+<h1 id="evaluation">Evaluation</h1>
+<p>Your assignment is worth 30 points, 15 points &times; 2.</p>
+<p>Note that your code <strong>must</strong> compile &ndash; no part marks will be given for code that does not compile.</p>
+<p>Note further that your code <strong>must</strong> compile with <code>make</code>. Graders <strong>will not</strong> manually compile any code by running <code>clang</code> for this assignment, <em>even if</em> you write instructions in the <code>README</code>.</p>
+<h2 id="warnings">Warnings</h2>
+<p>The code you write should compile with <code>clang -Wall</code> <em>without</em> any warnings. A 1 point penalty will be applied to your score (before multiplication) for <em>each</em> warning that is emitted by the compiler.</p>
+<h2 id="question-1">Question 1 &amp; 2</h2>
+<p><a href="/d2l/common/dialogs/quickLink/quickLink.d2l?ou=408555&amp;type=rubric&amp;rCode=UManitoba-1400911" target="_blank" rel="noopener">Assignment 3 Marking Rubric</a></p>
+</body>
+</html>

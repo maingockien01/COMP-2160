@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content />
+  <title>COMP 2160 – Programming Standards</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style>
+body { margin: 20px; font-family: Lato,'Lucida Sans Unicode','Lucida Grande',sans-serif; line-height: 1.5em; } 
+table { border-collapse: collapse; } 
+table,th,td { border: 1px solid #ddd; padding: 10px; margin: 10px; } 
+del, del > a, del > mark > a {color: lightgray; text-decoration-color: lightgray;} 
+ins > a {text-decoration-line: underline; text-decoration-style: wavy} 
+pre > code {background: black; color: white; padding: 1em; font-family: monospace; line-height: normal; display: block;}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">COMP 2160 – Programming Standards</h1>
+<p class="author"></p>
+</header>
+<p>This document lists the programming standards that you must follow for the programming questions of your assignments and exams.</p>
+<p>Failure to follow these standards <strong>will</strong> result in the loss of marks.</p>
+<ol type="1">
+<li>Each of your program files must begin with a comment block like the following:</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" title="1"><span class="co">//-----------------------------------------</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="co">// NAME: your name </span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="co">// STUDENT NUMBER: your student number</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="co">// COURSE: COMP 2160, SECTION: Axx</span></a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="co">// INSTRUCTOR: name of your instructor</span></a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="co">// ASSIGNMENT: assignment #, QUESTION: question #</span></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="co">// </span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="co">// REMARKS: What is the purpose of this program?</span></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="co">//</span></a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="co">//-----------------------------------------</span></a></code></pre></div>
+<ol start="2" type="1">
+<li>If the purpose of a routine is not self-explanatory, write a prologue comment at the beginning, similar to the following:</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb2-1" title="1"><span class="co">//------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="co">// myRoutine</span></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="co">//</span></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="co">// PURPOSE: tell me what it does! </span></a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="co">// INPUT PARAMETERS:</span></a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="co">// Describe those parameters which accept data values.</span></a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="co">// OUTPUT PARAMETERS:</span></a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="co">// Describe those parameters which return values.</span></a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="co">// Include the value returned by the routine if not void.</span></a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="co">// Some of these may be the same as the input</span></a>
+<a class="sourceLine" id="cb2-11" title="11"><span class="co">// parameters.</span></a>
+<a class="sourceLine" id="cb2-12" title="12"><span class="co">//------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb2-13" title="13">... myRoutine(...)</a></code></pre></div>
+<pre><code>Parts of the prologue may be omitted if appropriate, e.g., if the routine
+has no parameters.</code></pre>
+<ol start="3" type="1">
+<li>Use blank lines to separate blocks of code and declarations to improve readability. In particular, use blank lines between declarations and other code, and between routines.</li>
+<li>Comment blocks of code. Describe why you wrote the code this way, not what each line does. For example:</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb4-1" title="1"><span class="co">// Print the results.</span></a>
+<a class="sourceLine" id="cb4-2" title="2">printf(<span class="st">&quot;The taxes payable are:</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
+<a class="sourceLine" id="cb4-3" title="3">printf(<span class="st">&quot;Federal tax = %d</span><span class="sc">\n</span><span class="st">&quot;</span>, federalTax);</a></code></pre></div>
+<ol start="5" type="1">
+<li>Use meaningful but reasonable variable names.
+<ul>
+<li><strong><code>a</code></strong> – Very bad. too short, not meaningful.</li>
+<li><strong><code>averageMark</code></strong> – Good</li>
+<li><strong><code>average_of_all_the_marks_in_the_list</code></strong> – Bad. Too long and wordy.</li>
+</ul>
+If a concise variable name does not completely describe the data it stores, add a comment to the declaration with additional information.</li>
+<li>Use indentation properly, and align <strong>else</strong> with the corresponding <strong>if</strong> for readability. Any readable and consistent style is acceptable. The essential features are that all statements that are nested within another statement must be indented, and that the braces <code>{ }</code> must be in predictable and consistent positions. Common styles include:</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb5-1" title="1"><span class="cf">if</span>-<span class="cf">while</span>-<span class="cf">else</span>-etc {</a>
+<a class="sourceLine" id="cb5-2" title="2">   stuff-inside   </a>
+<a class="sourceLine" id="cb5-3" title="3">   stuff-inside</a>
+<a class="sourceLine" id="cb5-4" title="4">}</a>
+<a class="sourceLine" id="cb5-5" title="5"></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="cf">if</span>-<span class="cf">while</span>-<span class="cf">else</span>-etc </a>
+<a class="sourceLine" id="cb5-7" title="7">{  </a>
+<a class="sourceLine" id="cb5-8" title="8">   stuff-inside   </a>
+<a class="sourceLine" id="cb5-9" title="9">   stuff-inside</a>
+<a class="sourceLine" id="cb5-10" title="10">}</a>
+<a class="sourceLine" id="cb5-11" title="11"></a>
+<a class="sourceLine" id="cb5-12" title="12"><span class="cf">if</span>-<span class="cf">while</span>-<span class="cf">else</span>-etc</a>
+<a class="sourceLine" id="cb5-13" title="13">   {</a>
+<a class="sourceLine" id="cb5-14" title="14">   stuff-inside</a>
+<a class="sourceLine" id="cb5-15" title="15">   stuff-inside</a>
+<a class="sourceLine" id="cb5-16" title="16">   }</a></code></pre></div>
+<ol start="7" type="1">
+<li>Declare all variables at the beginning of a routine and <strong>never</strong> within a sub-block.</li>
+<li>Avoid the use of literal constants (“magic numbers”) in your program. Generally use constant identifiers rather than literal constants in your program. Acceptable exceptions are strings that appear only once in output titles and headings, and small fundamental values. Examples,
+<ul>
+<li><strong><code>sum = 0;</code></strong> literal constant 0 is OK</li>
+<li><strong><code>count = count + 1</code>;</strong> literal constant 1 is OK</li>
+<li><strong><code>price = total * 1.07;</code></strong> not proper. Create a named constant like <strong><code>PST_RATE = 1.07</code></strong>.</li>
+<li><strong><code>lastDigit = accountNumber % 10;</code></strong> literal constant 10 is OK.</li>
+<li><strong><code>if(codeLetter == &#39;R&#39;)</code></strong> not proper. Create a named constant like <strong><code>REFUND_CODE = &#39;R&#39;.</code></strong></li>
+</ul></li>
+<li>Appropriate prompts should always be used for interactive input.</li>
+<li>All output produced by your programs must have appropriate titles and headings.</li>
+<li>The output of a program should contain a message to the effect that the program completed its task normally, e.g. “end of processing”, “program completed normally”, “all done”, or an equivalent. For example:</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb6-1" title="1">printf(<span class="st">&quot;Program completed normally.&quot;</span>);</a></code></pre></div>
+<ol start="12" type="1">
+<li>Never change the value of a <strong><code>for</code></strong> loop variable inside the loop.</li>
+<li>Avoid the duplication of code. Every job, task, or formula should be implemented in <strong>one</strong> place.</li>
+</ol>
+</body>
+</html>
