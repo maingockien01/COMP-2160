@@ -39,6 +39,21 @@ int ARRAY_10_LENGTH = 10;
 
 int ARRAY_11[] = {1,2,3,4,5,6,7,8,9,10,11};
 int ARRAY_11_LENGTH = 11;
+
+int ARRAY_12[] = {1,2,3,4};
+int ARRAY_12_LENGTH = 4;
+
+int ARRAY_13[] = {2,4,5,6};
+int ARRAY_13_LENGTH = 4;
+
+int ARRAY_14[] = {1,3,5,6};
+int ARRAY_14_LENGTH = 4;
+
+int ARRAY_15[] = {5,6,7,8,9,10};
+int ARRAY_15_LENGTH = 5;
+
+
+
 //----------------------------------------------------------
 // PROTOTYPES
 //----------------------------------------------------------
@@ -104,7 +119,7 @@ Boolean removeArray (Set *set, int *array, int length) {
 
 void testValidateMemUse () {
     test("No set has been created, validateMemUse should return true", validateMemUse());
-    printf("Create a set\n");
+    printf("Create a set: firstSet\n");
     Set *firstSet = newSet ();
     test("The firstSet should be not null", !expectNull(firstSet));
     test("One set was created, validateMemUse should return false", !validateMemUse());
@@ -166,6 +181,8 @@ void testAreEqual () {
     set2 = newSet();
 
     printf("Test 2 empty\n");
+    printf("Set 1: empty\n");
+    printf("Set 2: empty\n");
     test("Set1 empty should equal set2 empty", areEqual(set1, set2));
 
     printf("Reconstruct set\n");
@@ -177,6 +194,7 @@ void testAreEqual () {
     printf("Test empty set with non-empty set\n");
     printf("Insert set1, ");
     insertArray(set1, ARRAY_6, ARRAY_6_LENGTH);
+    printf("Set 2: empty\n");
     test("Set1 should NOT equal set2 empty", !areEqual(set1, set2));
 
     printf("Reconstruct set\n");
@@ -184,6 +202,7 @@ void testAreEqual () {
     deleteSet(set2);
     set1 = newSet();
     set2 = newSet();
+
     printf("Test multiple-item same-length sets\n");
     printf("Insert set1, ");
     insertArray(set1, ARRAY_6, ARRAY_6_LENGTH);
@@ -263,11 +282,11 @@ void testUnionOf () {
     insertArray(set2, ARRAY_7, ARRAY_7_LENGTH);
     printf("Set 3 ");
     insertArray(set3, ARRAY_3, ARRAY_3_LENGTH);
-    printf("Union set 1 and set 2");
+    printf("Union set 1 and set 2\n");
     unionSet = unionOf(set1, set2);
     test("Union set 1 and set 2 should equal set 3", areEqual(set3, unionSet));
 
-    printf("Reconstruct sets");
+    printf("Reconstruct sets\n");
     deleteSet(set1);
     deleteSet(set2);
     deleteSet(set3);
@@ -283,7 +302,7 @@ void testUnionOf () {
     insertArray(set2, ARRAY_9, ARRAY_9_LENGTH);
     printf("Set 3 ");
     insertArray(set3, ARRAY_11, ARRAY_11_LENGTH);
-    printf("Union set 1 and set 2");
+    printf("Union set 1 and set 2\n");
     unionSet = unionOf(set1, set2);
     test("Union set 1 and set 2 should equal set 3", areEqual(set3, unionSet));
 
@@ -302,11 +321,11 @@ void testUnionOf () {
     insertArray(set1, ARRAY_2, ARRAY_2_LENGTH);
     printf("Set 3 ");
     insertArray(set3, ARRAY_2, ARRAY_2_LENGTH);
-    printf("Union set 1 and set 2");
+    printf("Union set 1 and set 2\n");
     unionSet = unionOf(set1, set2);
     test("Union set 1 and set 2 empty should equal set 3", areEqual(set3, unionSet));
 
-    printf("Reconstruct sets");
+    printf("Reconstruct sets\n");
     deleteSet(set1);
     deleteSet(set2);
     deleteSet(set3);
@@ -317,7 +336,7 @@ void testUnionOf () {
 
 
     printf("Test 2 empty set\n");
-    printf("Union set 1 empty and set 2 empty");
+    printf("Union set 1 empty and set 2 empty\n");
     unionSet = unionOf(set1, set2);
     test("Union set 1 and set 2 should equal set 3 empty", areEqual(set3, unionSet));
 
@@ -329,4 +348,105 @@ void testUnionOf () {
 }
 
 void testSymmetricDifferenceOf () {
+    Set *set1;
+    Set *set2;
+    Set *set3;
+    Set *symmetricDifference;
+    set1 = newSet ();
+    set2 = newSet ();
+    set3 = newSet ();
+
+    if(validateMemUse() || set1 == NULL || set2 == NULL || set3 == NULL) {
+        printf("Fail to construct set, unable to construct other functions!\n");
+    }
+
+    printf("Test 2 joint sets\n");
+    printf("Set 1 :");
+    insertArray(set1, ARRAY_12, ARRAY_12_LENGTH);
+    printf("Set 2 :");
+    insertArray(set2, ARRAY_13, ARRAY_13_LENGTH);
+    printf("Set 3:");
+    insertArray(set3, ARRAY_14, ARRAY_14_LENGTH);
+    symmetricDifference = symmetricDifferenceOf(set1, set2);
+    test("Symmetric Difference of set 1 and set 2 should equal set 3", areEqual(set3, symmetricDifference));
+
+
+    printf("Reconstruct sets\n");
+    deleteSet(set1);
+    deleteSet(set2);
+    deleteSet(set3);
+    deleteSet(symmetricDifference);
+    set1 = newSet();
+    set2 = newSet();
+    set3 = newSet();
+
+    printf("Test 2 disjoint sets\n");
+    printf("Set 1 :");
+    insertArray(set1, ARRAY_12, ARRAY_12_LENGTH);
+    printf("Set 2 :");
+    insertArray(set2, ARRAY_15, ARRAY_15_LENGTH);
+    printf("Set 3:");
+    insertArray(set3, ARRAY_1, ARRAY_1_LENGTH);
+    symmetricDifference = symmetricDifferenceOf(set1, set2);
+    test("Symmetric Difference of set 1 and set 2 should equal set 3", areEqual(set3, symmetricDifference));
+
+
+    printf("Reconstruct sets\n");
+    deleteSet(set1);
+    deleteSet(set2);
+    deleteSet(set3);
+    deleteSet(symmetricDifference);
+    set1 = newSet();
+    set2 = newSet();
+    set3 = newSet();
+
+    printf("Test 2 same sets\n");
+    printf("Set 1 :");
+    insertArray(set1, ARRAY_1, ARRAY_1_LENGTH);
+    printf("Set 2 :");
+    insertArray(set2, ARRAY_1, ARRAY_1_LENGTH);
+    printf("Set 3: empty\n");
+    symmetricDifference = symmetricDifferenceOf(set1, set2);
+    test("Symmetric Difference of set 1 and set 2 should equal set 3", areEqual(set3, symmetricDifference));
+
+
+    printf("Reconstruct sets\n");
+    deleteSet(set1);
+    deleteSet(set2);
+    deleteSet(set3);
+    deleteSet(symmetricDifference);
+    set1 = newSet();
+    set2 = newSet();
+    set3 = newSet();
+
+    printf("Test non-empty set with empty set\n");
+    printf("Set 1 :");
+    insertArray(set1, ARRAY_1, ARRAY_1_LENGTH);
+    printf("Set 2 : empty\n");
+    printf("Set 3:");
+    insertArray(set3, ARRAY_1, ARRAY_1_LENGTH);
+    symmetricDifference = symmetricDifferenceOf(set1, set2);
+    test("Symmetric Difference of set 1 and set 2 should equal set 3", areEqual(set3, symmetricDifference));
+
+
+    printf("Reconstruct sets\n");
+    deleteSet(set1);
+    deleteSet(set2);
+    deleteSet(set3);
+    deleteSet(symmetricDifference);
+    set1 = newSet();
+    set2 = newSet();
+    set3 = newSet();
+
+    printf("Test 2 empty sets\n");
+    printf("Set 1 : empty\n");
+    printf("Set 2 : empty\n");
+    printf("Set 3 : empty\n");
+    symmetricDifference = symmetricDifferenceOf(set1, set2);
+    test("Symmetric Difference of set 1 and set 2 should equal set 3", areEqual(set3, symmetricDifference));
+
+
+    deleteSet(set1);
+    deleteSet(set2);
+    deleteSet(set3);
 }
