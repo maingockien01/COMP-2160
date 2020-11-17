@@ -328,3 +328,6 @@ void testUnionOf () {
     deleteSet(unionSet);
 
 }
+
+void testSymmetricDifferenceOf () {
+}
