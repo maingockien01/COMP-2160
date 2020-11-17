@@ -37,6 +37,8 @@ int ARRAY_9_LENGTH = 10;
 int ARRAY_10[] = {11,12,13,14,15,16,17,18,19,20};
 int ARRAY_10_LENGTH = 10;
 
+int ARRAY_11[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+int ARRAY_11_LENGTH = 20;
 //----------------------------------------------------------
 // PROTOTYPES
 //----------------------------------------------------------
@@ -94,7 +96,7 @@ Boolean removeArray (Set *set, int *array, int length) {
     printf("Remove: ");
     for (i = 0; i < length; i ++) {
         printf("%d ", array[i]);
-        isAllRemoved = isAllRemoved && removeItem(array[i]);
+        isAllRemoved = isAllRemoved && removeItem(set, array[i]);
     };
     printf("\n");
     return isAllRemoved;
@@ -130,7 +132,7 @@ void testInsertAndRemove () {
     printf("Test insert and remove 2 items width duplicate\n");
     test("Insert 2 different items should return true", insertArray(set1, ARRAY_3, ARRAY_3_LENGTH));
     test("Insert 1 item that duplicate a item in set should return false", !insertArray(set1, ARRAY_2, ARRAY_2_LENGTH));
-    test("Remove first two item should return true", removeArray(ARRAY_3, ARRAY_3_LENGTH));
+    test("Remove first two item should return true", removeArray(set1, ARRAY_3, ARRAY_3_LENGTH));
     test("Remove the item that tried to insert duplicate (to confirm no duplicate) should return false", !removeArray(set1, ARRAY_2, ARRAY_2_LENGTH));
 
     printf("Reconstruct set\n");
@@ -147,7 +149,7 @@ void testAreEqual () {
     Set *set1 = newSet();
     Set *set2 = newSet();
 
-    if(validateMemUse() || set1 == NULL || set == NULL) {
+    if(validateMemUse() || set1 == NULL || set2 == NULL) {
         printf("Fail to construct set, unable to construct other functions!\n");
     }
 
@@ -198,7 +200,7 @@ void testAreDisjoint () {
     Set *set1 = newSet();
     Set *set2 = newSet();
 
-    if(validateMemUse() || set1 == NULL || set == NULL) {
+    if(validateMemUse() || set1 == NULL || set2 == NULL) {
         printf("Fail to construct set, unable to construct other functions!\n");
     }
 
@@ -251,7 +253,7 @@ void testUnionOf () {
     Set *set2 = newSet();
     Set *set3 = newSet();
     Set *unionSet; 
-    if(validateMemUse() || set1 == NULL || set == NULL) {
+    if(validateMemUse() || set1 == NULL || set2 == NULL || set3 == NULL) {
         printf("Fail to construct set, unable to construct other functions!\n");
     }
 
