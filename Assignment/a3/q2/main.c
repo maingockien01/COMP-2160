@@ -37,8 +37,8 @@ int ARRAY_9_LENGTH = 10;
 int ARRAY_10[] = {11,12,13,14,15,16,17,18,19,20};
 int ARRAY_10_LENGTH = 10;
 
-int ARRAY_11[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
-int ARRAY_11_LENGTH = 20;
+int ARRAY_11[] = {1,2,3,4,5,6,7,8,9,10,11};
+int ARRAY_11_LENGTH = 11;
 //----------------------------------------------------------
 // PROTOTYPES
 //----------------------------------------------------------
@@ -110,7 +110,6 @@ void testValidateMemUse () {
     test("One set was created, validateMemUse should return false", !validateMemUse());
     test("Delete the first set, the returned set from function deleteSet should be null", expectNull(deleteSet(firstSet)));
     test("There is no set now, validateMemUse should return true", validateMemUse());
-    test("Delete NULL should return NULL and no crash", expectNull(deleteSet(NULL)));
 }
 
 void testInsertAndRemove () {
@@ -122,7 +121,7 @@ void testInsertAndRemove () {
 
     printf("Test insert and remove 1 item\n");
     test("Insert 1 item should return true", insertArray(set1, ARRAY_2, ARRAY_2_LENGTH));
-    test("Remove wrong items should return false", removeArray(set1, ARRAY_4, ARRAY_4_LENGTH));
+    test("Remove wrong items should return false", removeArray(set1, ARRAY_7, ARRAY_7_LENGTH));
     test("Remove 1 item should return true", removeArray(set1, ARRAY_2, ARRAY_2_LENGTH));
     test("Remove same item second time (confirm removal) should return false", removeArray(set1, ARRAY_2, ARRAY_2_LENGTH));
 
@@ -139,8 +138,8 @@ void testInsertAndRemove () {
     deleteSet(set1);
     set1 = newSet();
     printf("Test insert and remove multiple items\n");
-    test("Insert multiple items should return true", insertArray(set1, ARRAY_6, ARRAY_6_LENGTH));
-    test("Remove multiple items (same items) should return true", removeArray(set1, ARRAY_7, ARRAY_7_LENGTH));
+    test("Insert multiple items should return true", insertArray(set1, ARRAY_1, ARRAY_1_LENGTH));
+    test("Remove multiple items (same items) should return true", removeArray(set1, ARRAY_1, ARRAY_1_LENGTH));
     
     deleteSet(set1);
 }
@@ -261,9 +260,9 @@ void testUnionOf () {
     printf("Set 1 ");
     insertArray(set1, ARRAY_2, ARRAY_2_LENGTH);
     printf("Set 2 ");
-    insertArray(set2, ARRAY_3, ARRAY_3_LENGTH);
+    insertArray(set2, ARRAY_7, ARRAY_7_LENGTH);
     printf("Set 3 ");
-    insertArray(set3, ARRAY_7, ARRAY_7_LENGTH);
+    insertArray(set3, ARRAY_3, ARRAY_3_LENGTH);
     printf("Union set 1 and set 2");
     unionSet = unionOf(set1, set2);
     test("Union set 1 and set 2 should equal set 3", areEqual(set3, unionSet));
@@ -281,7 +280,7 @@ void testUnionOf () {
     printf("Set 1 ");
     insertArray(set1, ARRAY_1, ARRAY_1_LENGTH);
     printf("Set 2 ");
-    insertArray(set2, ARRAY_10, ARRAY_10_LENGTH);
+    insertArray(set2, ARRAY_9, ARRAY_9_LENGTH);
     printf("Set 3 ");
     insertArray(set3, ARRAY_11, ARRAY_11_LENGTH);
     printf("Union set 1 and set 2");
