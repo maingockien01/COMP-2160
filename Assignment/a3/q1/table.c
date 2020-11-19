@@ -19,7 +19,6 @@ Boolean insertItem (int item) {
 
     if (head == NULL) {
        head = newCell;
-        
        return true;
     };
 
@@ -63,7 +62,7 @@ Boolean removeItem (int item) {
         temp = head;
         head = head->next;
 
-        free(temp);
+        //free(temp);
 
         return true;
     };
@@ -91,10 +90,10 @@ void clearTable () {
     while (iterator != NULL) {
         temp = iterator;
         iterator = iterator->next;
-        free(temp);
+        //free(temp);
     }
 
-    head = iterator;
+    head = NULL;
 }
 
 Boolean search (int item) {
@@ -111,6 +110,9 @@ Boolean search (int item) {
 }
 
 Boolean firstItem(int * item) {
+    if (item == NULL) {
+        item = (int*) malloc(sizeof(int));
+    };
     if (head != NULL) {
         int headItem = head->item;
 
@@ -122,6 +124,9 @@ Boolean firstItem(int * item) {
 }
 
 Boolean nextItem(int * item) {
+    if (item == NULL) {
+        item = (int*) malloc(sizeof(int));
+    };
     if (head == NULL) {
         return false;
     };

@@ -35,6 +35,13 @@ void testClearTableWithGivenArray(int *array, int length);
 void testClearTableWithArray();
 void testRemoveWithArray ();
 void testRemoveWithGivenArray(int *array, int length);
+void testMemoryLeak ();
+
+Boolean searchArray(int *array, int length);
+Boolean insertArray(int *array, int length);
+Boolean removeArray(int *array, int length);
+Boolean insertOne(int item);
+Boolean removeOne(int item);
 //------------------------------------------------------------
 // FUNCTIONS
 //------------------------------------------------------------
@@ -46,7 +53,52 @@ int main() {
     testCase("Insert ARRAY_UNSORTED, items are inserted not in order however the items in the table should be in order", testInsertUnsorted);
     testCase("Insert array, clear table, table should be empty after clearing", testClearTableWithArray);
     testCase("Insert array, remove all items, table should be empty after removing", testRemoveWithArray);
+    testCase("Test memory leak by allocating and freeing repeatedly", testMemoryLeak);
     reportTest();
+}
+
+Boolean insertOne (int item) {
+    return insertItem(item);
+};
+
+Boolean removeOne(int item) {
+    return removeItem(item);
+}
+
+Boolean insertArray(int *array, int length) {
+    if (array == NULL) {
+        return false;
+    };
+    Boolean isInsert = true;
+    int i;
+    for (i = 0; i < length; i ++) {
+        isInsert = isInsert && insertOne(array[i]);
+    }
+
+    return isInsert;
+}
+
+Boolean removeArray(int *array, int length) {
+    if (array == NULL) {
+        return false;
+    };
+    Boolean isRemove = true;
+    int i;
+    for (i = 0; i < length; i ++) {
+        isRemove = isRemove && removeOne(array[i]);
+    }
+
+    return isRemove;
+}
+
+Boolean searchArray(int *array, int length) {
+    Boolean isSearch = true;
+    int i;
+    for (i = 0; i < length; i ++) {
+        isSearch = isSearch && search(array[i]);
+    }
+
+    return isSearch;
 }
 
 void testEmptyTable () {
@@ -75,9 +127,10 @@ void testInsertOneItem () {
 
 void testClearTable () {
     int temp;
+    int *tempPointer = NULL;
     insertItem(ARRAY_SORTED[0]);
     
-    test("First Item before clear table should return true", firstItem(&temp)); //Should be true
+    test("First Item before clear table should return true", firstItem(tempPointer)); //Should be true
 
     clearTable();
 
@@ -88,17 +141,16 @@ void testClearTable () {
 void testWithArray(int *array, int length) {
     Boolean isInserted = true;
     int i;
-    for (i = 0; i < length; i ++) {
-        isInserted = isInserted && insertItem(array[i]);
-    };
-    test("Insert all items in given array", isInserted);
+    test("Insert all items in given array", insertArray(array, length));
    
     testItemsInOrder();
-    testSearchItems(array, length);
+    test("Search all item in the given array should return true", searchArray(array, length));
+    
  
 } 
 
 void testItemsInOrder () {
+    int *tempPointer = NULL;
     int temp;
     int prevTemp;
     Boolean isInOrder = true;
@@ -110,15 +162,6 @@ void testItemsInOrder () {
  
 }
 
-void testSearchItems(int *array, int length) {
-    Boolean isSearch = true;
-    int i;
-    for (i = 0; i < length; i ++) {
-        isSearch = isSearch && search(array[i]);
-    }
-
-    test("Search all item in the given array should return true", isSearch);
-}
 
 
 void testInsertSorted () {
@@ -170,4 +213,9 @@ void testRemoveWithGivenArray(int *array, int length) {
     };
     test("Removed all items, table should be empty", isRemoveAllItem);
     testEmptyTable();
+}
+
+void testMemoryLeak () {
+    
+
 }
