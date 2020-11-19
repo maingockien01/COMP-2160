@@ -62,7 +62,7 @@ Boolean removeItem (int item) {
         temp = head;
         head = head->next;
 
-        //free(temp);
+        free(temp);
 
         return true;
     };
@@ -90,7 +90,7 @@ void clearTable () {
     while (iterator != NULL) {
         temp = iterator;
         iterator = iterator->next;
-        //free(temp);
+        free(temp);
     }
 
     head = NULL;
@@ -110,13 +110,9 @@ Boolean search (int item) {
 }
 
 Boolean firstItem(int * item) {
-    if (item == NULL) {
-        item = (int*) malloc(sizeof(int));
-    };
-    if (head != NULL) {
-        int headItem = head->item;
+   if (head != NULL) {
 
-        *item = headItem;
+        item = &(head->item);
 
         return true;
     };
@@ -124,20 +120,17 @@ Boolean firstItem(int * item) {
 }
 
 Boolean nextItem(int * item) {
-    if (item == NULL) {
-        item = (int*) malloc(sizeof(int));
-    };
     if (head == NULL) {
         return false;
     };
     if (traverseNode == NULL) {
         traverseNode = head;
-        *item = traverseNode->item;
+        item = &(traverseNode->item);
         return true;
     } else {
         traverseNode = traverseNode->next;
         if (traverseNode != NULL) {
-            *item = traverseNode->item;
+            item = &(traverseNode->item);
             return true;
         } else {
             return false;
