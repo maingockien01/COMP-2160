@@ -106,6 +106,25 @@ Boolean searchArray(int *array, int length) {
     return isSearch;
 }
 
+void testItemsInOrder () {
+    int temp;
+    int prevTemp;
+    Boolean isInOrder = true;
+    nextItem(&prevTemp); //Assign prevTemp to the first item
+    nextItem(&prevTemp); //Assign prevTemp to the first item
+    while (nextItem(&temp)) {
+        isInOrder = isInOrder && prevTemp <= temp;
+        prevTemp = temp;
+    }
+    test("Items are in order should return true", isInOrder);
+    printf("Print item: ");
+    while(nextItem(&temp)) {
+        printf("%d ", temp);
+    }
+    printf("\n");
+}
+
+
 //Test cases
 void testEmptyTable () {
     int temp;
@@ -133,6 +152,7 @@ void testTableOneElement () {
 
 void testClearTable () {
     int temp;
+    int count;
 
     printf("Clear table with one element");
     insertItem(ARRAY_SORTED[0]);
@@ -140,78 +160,54 @@ void testClearTable () {
     clearTable();
     test("First Item after clear table should return false", !firstItem(&temp)); //Should be true
 
-    printf("Clear table with array");
-    
-
-}
-
-void testWithArray(int *array, int length) {
-    Boolean isInserted = true;
-    int i;
-    test("Insert all items in given array", insertArray(array, length));
-   
-    testItemsInOrder();
-    test("Search all item in the given array should return true", searchArray(array, length));
-    
- 
-} 
-
-void testItemsInOrder () {
-    int temp;
-    int prevTemp;
-    Boolean isInOrder = true;
-    nextItem(&prevTemp); //Assign prevTemp to the first item
-    nextItem(&prevTemp); //Assign prevTemp to the first item
-    while (nextItem(&temp)) {
-        isInOrder = isInOrder && prevTemp <= temp;
-        printf("%d < %d\n", prevTemp, temp);
-        prevTemp = temp;
+    printf("Clear table with array - repeating %d times\n", REPEAT_TIME);
+    //Insert an array
+    for (count = 0; count < REPEAT_TIME; count ++) {
+        insertArray(ARRAY_UNSORTED, ARRAY_UNSORTED_LENGTH);
+        printf("Clear table\n");
+        clearTable();
     }
-    test("Items are in order should return true", isInOrder);
- 
-}
-
-
-
-void testInsertSorted () {
-    //testWithArray(ARRAY_SORTED, ARRAY_SORTED_LENGTH);
-}
-
-
-/**
-void testClearTableWithGivenArray (int *array, int length) {
-    Boolean isInserted = true;
-    int i;
-    for (i = 0; i < length; i ++) {
-        isInserted = isInserted && insertItem(array[i]);
-    };
-    test("Insert all items in given array", isInserted);
-    
-    clearTable();
-
-    printf("Call clear table, table should be empty now\n");
-
-    testEmptyTable ();
-
-}
-*/
-void testRemoveWithGivenArray(int *array, int length) {
-    testWithArray(array, length);
-
-    printf("Remove item\n");
-    int i;
-    Boolean isRemoveAllItem = true;
-    for(i = 0; i < length; i ++) {
-        isRemoveAllItem = isRemoveAllItem && removeItem(array[i]);
-    };
-    test("Removed all items, table should be empty", isRemoveAllItem);
     testEmptyTable();
 }
+
+void testInsertSorted () {
+    printf("Insert sorted array.\n");
+    insertArray(ARRAY_SORTED, ARRAY_SORTED_LENGTH);
+    testItemsInOrder();
+    printf("Clear table\n");
+    clearTable();
+
+    printf("Insert unsorted array.\n");
+    insertArray(ARRAY_UNSORTED, ARRAY_UNSORTED_LENGTH);
+    testItemsInOrder();
+    printf("Clear table\n");
+    clearTable();
+}
+
 void testRemove() {
+    int i;
+    int j;
     printf("Test with ARRAY_UNSORTED\n");
-    testRemoveWithGivenArray(ARRAY_UNSORTED, ARRAY_UNSORTED_LENGTH);
+    insertArray(ARRAY_SORTED, ARRAY_SORTED_LENGTH);
+    removeArray(ARRAY_SORTED, ARRAY_SORTED_LENGTH);
+    testEmptyTable();
+
     printf("Test with ARRAY_SORTED\n");
-    testRemoveWithGivenArray(ARRAY_SORTED, ARRAY_SORTED_LENGTH);
+    insertArray(ARRAY_UNSORTED, ARRAY_UNSORTED_LENGTH);
+    removeArray(ARRAY_UNSORTED, ARRAY_UNSORTED_LENGTH);
+    testEmptyTable();
+
+    printf("Scaffolding - repeat %d times\n", REPEAT_TIME);
+    for (i = 1; i <= REPEAT_TIME; i ++) {
+        printf("Insert and remove #%d.\n", i);
+        //insert then remove
+        int array[i];
+        for (j = 0; j < i; j ++) {
+            array[j] = j;
+        }
+        insertArray(array, i);
+        removeArray(array, i);
+    }
 }
 
 
