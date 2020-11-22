@@ -110,9 +110,13 @@ Boolean search (int item) {
 }
 
 Boolean firstItem(int * item) {
-   if (head != NULL) {
+    if (item == NULL) {
+        return false;
+    };
+    if (head != NULL) {
 
-        item = &(head->item);
+        int firstItem = head->item;
+        *item = firstItem;
 
         return true;
     };
@@ -120,17 +124,22 @@ Boolean firstItem(int * item) {
 }
 
 Boolean nextItem(int * item) {
+    if (item == NULL) {
+        return false;
+    }
     if (head == NULL) {
         return false;
     };
     if (traverseNode == NULL) {
         traverseNode = head;
-        item = &(traverseNode->item);
+        int next = traverseNode->item;
+        *item = next;
         return true;
     } else {
         traverseNode = traverseNode->next;
         if (traverseNode != NULL) {
-            item = &(traverseNode->item);
+            int next = traverseNode->item;
+            *item = next;
             return true;
         } else {
             return false;

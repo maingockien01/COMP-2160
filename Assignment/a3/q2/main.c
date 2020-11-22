@@ -7,6 +7,8 @@
 // CONSTANTS
 //----------------------------------------------------------
 
+int REPEAT_TIME = 20;
+
 int ARRAY_1[] = {1,2,3,4,5,6,7,8,9,10};
 int ARRAY_1_LENGTH = 10;
 
@@ -70,7 +72,9 @@ void testUnionOf ();
 
 void testSymmetricDifferenceOf ();
 
-void testDelete ();
+void testScaffolding();
+
+//Helpers
 
 //Return true if all the item in the array are inserted successfully
 Boolean insertArray (Set *set, int *array, int length);
@@ -89,10 +93,12 @@ int main () {
     testCase("areDisjoint function", testAreDisjoint);
     testCase("unionOf function", testUnionOf);
     testCase("symmetricDifferenceOf", testSymmetricDifferenceOf);
+    testCase("repeating construct and deconstruct set to test memory leak", testScaffolding);
 
     reportTest();
 }
 
+//Helpers
 Boolean insertArray(Set *set, int *array, int length) {
     int i;
     Boolean isNotDuplicate = true;
@@ -117,6 +123,7 @@ Boolean removeArray (Set *set, int *array, int length) {
     return isAllRemoved;
 }
 
+//Test cases
 void testValidateMemUse () {
     test("No set has been created, validateMemUse should return true", validateMemUse());
     printf("Create a set: firstSet\n");
@@ -130,7 +137,7 @@ void testValidateMemUse () {
 void testInsertAndRemove () {
     Set *set1 = newSet ();
     if (validateMemUse() || set1 == NULL) {
-        printf("Fail to construct set, unable to test other functions");
+        printf("ERROR: Fail to construct set, unable to test other functions\n");
         return;
     };
 
@@ -143,6 +150,7 @@ void testInsertAndRemove () {
     printf("Reconstruct set\n");
     deleteSet(set1);
     set1 = newSet();
+
     printf("Test insert and remove 2 items width duplicate\n");
     test("Insert 2 different items should return true", insertArray(set1, ARRAY_3, ARRAY_3_LENGTH));
     test("Insert 1 item that duplicate a item in set should return false", !insertArray(set1, ARRAY_2, ARRAY_2_LENGTH));
@@ -152,11 +160,13 @@ void testInsertAndRemove () {
     printf("Reconstruct set\n");
     deleteSet(set1);
     set1 = newSet();
+
     printf("Test insert and remove multiple items\n");
     test("Insert multiple items should return true", insertArray(set1, ARRAY_1, ARRAY_1_LENGTH));
     test("Remove multiple items (same items) should return true", removeArray(set1, ARRAY_1, ARRAY_1_LENGTH));
     
     deleteSet(set1);
+
 }
 
 void testAreEqual () {
@@ -164,7 +174,7 @@ void testAreEqual () {
     Set *set2 = newSet();
 
     if(validateMemUse() || set1 == NULL || set2 == NULL) {
-        printf("Fail to construct set, unable to construct other functions!\n");
+        printf("ERROR: Fail to construct set, unable to construct other functions!\n");
     }
 
     printf("Test multiple-item sets\n");
@@ -449,4 +459,39 @@ void testSymmetricDifferenceOf () {
     deleteSet(set1);
     deleteSet(set2);
     deleteSet(set3);
+}
+
+void testScaffolding () {
+    int i, j;
+    Set *set1;
+
+    printf("Insert and remove %d times\n", REPEAT_TIME);
+    for (i = 1; i <= REPEAT_TIME; i ++) {
+        printf("Insert and remove #%d\n", i);
+        set1 = newSet();
+        int array[i];
+
+        for (j = 0; j < i; j ++) {
+            array[j] = j;
+        }
+
+        insertArray(set1, array, i);
+        removeArray(set1, array, i);
+        deleteSet(set1);
+    }
+
+    printf("Construct, insert and deleteSet %d times\n", REPEAT_TIME);
+    for (i = 1; i <= REPEAT_TIME; i ++) {
+        printf("Construct, insert and deleteSet #%d\n", i);
+        set1 = newSet();
+        int array[i];
+
+        for (j = 0; j < i; j ++) {
+            array[j] = j;
+        }
+
+        insertArray(set1, array, i);
+        removeArray(set1, array, i);
+        deleteSet(set1);
+    }   
 }
