@@ -1,3 +1,13 @@
+//----------------------------------------------------------
+// NAME: kien mai
+// STUDENT NUMBER: 7876083
+// COURSE: COMP 2160, SECTION: A02
+// INSTRUCTOR: Dr. Eskicioglu
+// ASSIGNMENT: #3, QUESTION: #2
+//
+// REMARKS: test suite for the set.h implementation
+//---------------------------------------------------------
+
 #include <stdio.h>
 
 #include "test.h"
