@@ -5,7 +5,7 @@
 // INSTRUCTOR: Dr. Eskicioglu
 // ASSIGNMENT: #3, QUESTION: #2
 //
-// REMARKS: test suite for the table.h implementation (table.c)
+// REMARKS: test suite for the set.h implementation
 //---------------------------------------------------------
 
 #include <stdio.h>
