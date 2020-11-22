@@ -50,7 +50,7 @@ int ARRAY_14[] = {1,3,5,6};
 int ARRAY_14_LENGTH = 4;
 
 int ARRAY_15[] = {5,6,7,8,9,10};
-int ARRAY_15_LENGTH = 5;
+int ARRAY_15_LENGTH = 6;
 
 
 
