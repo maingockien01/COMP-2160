@@ -71,6 +71,8 @@ Boolean insertItem (int item) {
         iterator = iterator->next;
     }
 
+    //New item is greater than all items in table
+    //Iterator is the tail of the table
     iterator->next = newCell;
 
     return true;
