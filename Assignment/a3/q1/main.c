@@ -1,3 +1,13 @@
+//----------------------------------------------------------
+// NAME: kien mai
+// STUDENT NUMBER: 7876083
+// COURSE: COMP 2160, SECTION: A02
+// INSTRUCTOR: Dr. Eskicioglu
+// ASSIGNMENT: #3, QUESTION: #1
+//
+// REMARKS: test suite for the table.h implementation (table.c)
+//---------------------------------------------------------
+
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
@@ -144,6 +154,7 @@ void testTableOneElement () {
     test("Search a not inserted item should return false", !search(123)); //Should be false
     test("nextItem should return true", nextItem(&tempNext)); //Should be true
     test("tempNext callback value of next item should equal theItem inserted", tempNext == theItem ? true : false); //Should be true
+    test("Insert duplicated item should be false", !insertItem(theItem));
     test("remove item 123 - not inserted item should return false", !removeItem(123)); //Should be false
     test("remove theItem inserted should return true", removeItem(theItem)); //Should be true
     test("firstItem after removing theItem should return false", !firstItem(&temp)); //Should be false - confirm removing successful
