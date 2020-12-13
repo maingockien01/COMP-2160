@@ -1,0 +1,193 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+#include "ObjectManager.h"
+
+typedef struct objectNode {
+    ulong start;
+    ulong size;
+    Ref id;
+    int refCount;
+    struct objectNode *next;
+} Node;
+
+void *buffer;
+void *freePointer;
+ulong freePtr;
+Node *head;
+
+Ref nodeRef;
+
+
+// List functions 
+void addNode (Node * newNode);
+void removeNode (Ref ref);
+Node * getNode (Ref id);
+
+// Helpers
+Ref createRef ();
+Node *allocateSpace ();
+void clearSpace (Node * node);
+
+Ref insertObject(ulong size) {
+    //Check if there is available space
+    //if no: defragment
+        //if still no after defragment return error
+    //otherwise
+    // allocate space
+    return 0;
+};
+
+void *retrieveObject(Ref ref) {
+
+    return NULL;
+};
+
+void addReference (Ref ref) {
+    Node *node = getNode(ref);
+
+    if (node == NULL) {
+        return;
+    };
+
+    node->refCount ++;
+};
+
+void dropReference (Ref ref) {
+
+};
+
+void initPool () {
+    buffer = malloc(MEMORY_SIZE);
+    freePointer = buffer;
+    head = NULL;
+    freePtr = 0;
+    nodeRef = 0;
+};
+
+void destroyPool () {
+
+};
+
+void dumpPool () {
+
+};
+
+void compact () {
+
+};
+
+//Helpers
+Node* allocateSpace (ulong size) {
+    if (freePtr + size > MEMORY_SIZE) {
+        return NULL;
+    };
+    
+    Node *newNode = (Node *) malloc(sizeof(Node));
+    newNode->size = size;
+    newNode->start = freePtr;
+    newNode->id = createRef();
+    newNode->refCount = 0;
+    newNode->next = NULL;
+
+    freePtr += size;
+
+    return newNode;
+}
+
+void clearSpace (Node *node) {
+    int i;
+    for (i = 0; i < node->size; i ++) {
+        //TODO: Clear byte
+    }
+
+}
+
+void addNode (Node *node) {
+    if (node == NULL) {
+        return;
+    };
+
+    if (head == NULL) {
+        head = node;
+    };
+
+    Node *temp;
+    
+    temp = head;
+
+    while(temp->next != NULL) {
+        temp = temp->next;
+    };
+
+    temp->next = node;
+}
+
+void removeNode (Ref ref) {
+    Node * temp;
+    Node * nextTemp;
+
+    if (head == NULL) {
+        return;
+    };
+
+    if (head->id == ref) {
+        temp = head;
+
+        head = head->next;
+
+        free(temp);
+
+        return;
+    };
+
+    temp = head;
+    while(temp->next != NULL) {
+        nextTemp = temp->next;
+        if(nextTemp->id == ref) {
+            break;
+        };
+        temp = temp->next;
+    };
+
+    if(nextTemp != NULL) {
+        if (nextTemp->id == ref) {
+            temp->next = nextTemp->next;
+
+            free(nextTemp);
+        }
+    }
+
+    return;
+}
+
+Node * getNode (Ref id) {
+    Node *temp;
+    if (head == NULL) {
+        return NULL;
+    };
+
+    temp = head;
+    while(temp != NULL) {
+        if (temp->ref == id) {
+            break;
+        };
+
+        temp = temp->next;
+    }
+
+    if (temp == NULL) {
+        return NULL;
+    };
+
+    if (temp->ref == id) {
+        return temp;
+    } else {
+        return NULL;
+    }
+}
+
+Ref createRef () {
+    nodeRef ++;
+    return nodeRef;
+}
