@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Programming practices" />
+  <title>COMP 2160 – Assignment 4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style>
+body { margin: 20px; font-family: Lato,'Lucida Sans Unicode','Lucida Grande',sans-serif; line-height: 1.5em; } 
+table { border-collapse: collapse; } 
+table,th,td { border: 1px solid #ddd; padding: 10px; margin: 10px; } 
+del, del > a, del > mark > a {color: lightgray; text-decoration-color: lightgray;} 
+ins > a {text-decoration-line: underline; text-decoration-style: wavy} 
+pre > code {background: black; color: white; padding: 1em; font-family: monospace; line-height: normal; display: block;}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">COMP 2160 &ndash; Assignment 4</h1>
+<p class="author">Programming practices</p>
+<p class="date">Due December 11<sup>th</sup>, 2020 at 11:59pm</p>
+</header><nav id="TOC">
+<ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#objectives">Objectives</a></li>
+<li><a href="#question-1-the-object-manager">Question 1: The Object Manager</a></li>
+<li><a href="#submitting-your-assignment">Submitting your assignment</a></li>
+<li><a href="#evaluation">Evaluation</a></li>
+</ul>
+</nav>
+<h1 id="description">Description</h1>
+<p>In assignment 4 you&rsquo;re going to apply <strong>everything</strong> that we&rsquo;ve learned in class so far to build something that you&rsquo;ve <em>used</em> extensively in other languages &ndash; garbage collection!</p>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Read the <em>entire</em> assignment document before starting.</li>
+<li>The general structure and idea for memory management will be described extensively in class. Please attend class, and/or review posted lecture materials for these details.</li>
+<li>Your code should be able to be compiled with a C++ compiler. Your code must still be written in C, but you should ensure your code can be compiled with <code>clang++</code>. <strong>Your <code>Makefile</code> should use <code>clang++</code>, <em>not</em> <code>clang</code>.</strong></li>
+<li>Your programs must run correctly both with assertions enabled and disabled (when compiled with and without the <code>-DNDEBUG</code> option).</li>
+<li>Please be sure to follow the <a href="../programming-standards.html">programming standards</a>; not doing so will result in a loss of marks.</li>
+<li>Remember to complete the Honesty Declaration Checklist (you will not receive scores for your assignments until the checklist is completed).</li>
+<li>All submitted assignments will be scanned with automated software to monitor for academic integrity violations.</li>
+<li>Your assignment code must be handed in electronically. See the Submitting your assignment section below for more information.</li>
+<li>Late assignments are not accepted. The due date is enforced electronically.</li>
+</ul>
+<h1 id="objectives">Objectives</h1>
+<ul>
+<li>Real world application of concepts</li>
+</ul>
+<h1 id="question-1-the-object-manager">Question 1: The Object Manager</h1>
+<h2 id="summary">Summary</h2>
+<p>&ldquo;Hey!&rdquo; I can hear you saying. &ldquo;You said we were going to implement a garbage collector, but now you&rsquo;re talking about an <em>&lsquo;object manager&rsquo;</em>? What&rsquo;s the deal?&rdquo;</p>
+<p>Here&rsquo;s the deal: We can&rsquo;t <em>really</em> implement garbage collection in C without changing the language itself. That&rsquo;s why we have languages like Java, and Go, and C#, and D, and Python, that all have garbage collection built into the language itself.</p>
+<p>An object manager is an application of the collection ADT (like in A3), but now we&rsquo;re going to store <em>generic objects</em> in a managed buffer. That is, our container is going to be able to hold any kind of object we want and won&rsquo;t be limited to just strings. Using a buffer means that we must directly manage the memory and references to objects. This means that our object manager must implement <em>reference counting</em> and a <em>garbage collector</em>, so that we properly handle creation and deletion of objects. The object manager&rsquo;s interface is given by <a href="ObjectManager.h"><code>ObjectManager.h</code></a> and the implementation you write will be in a file named <code>ObjectManager.c</code>. Your task is to implement the functions required for the object manager. This includes all the functions listed in <code>ObjectManager.h</code>, along with any (private) <code>static</code> functions that will be useful. You will also need to define appropriate data types and data structures for keeping track of the objects that have been allocated. You are <strong>NOT</strong> allowed to change <code>ObjectManager.h</code>. To summarize, the functionalities you have to implement are:</p>
+<ul>
+<li><code>initPool()</code> &ndash; Initialize the object manager upon starting.</li>
+<li><code>destroyPool()</code> &ndash; Clean up the object manager upon quitting.</li>
+<li><code>insertObject(size)</code> &ndash; Request a block of memory of given size from the object manager.</li>
+<li><code>retrieveObject(id)</code> &ndash; Retrieve the <em>address</em> of an object, identified by the reference id.</li>
+<li><code>addReference(id)</code> &ndash; Increment the reference count for the object with reference id.</li>
+<li><code>dropReference(id)</code> &ndash; Decrement the reference count for the object with reference id.</li>
+<li><code>compact()</code> &ndash; Initiate garbage collection (see below). Note this function is <strong>NOT</strong> part of the interface available to the client code. That is, it&rsquo;s not declared in <code>ObjectManager.h</code>, but you need to implement it and call it in your own implementation.</li>
+<li><code>dumpPool()</code> &ndash; Print (to <code>stdout</code>) info about each object that is currently allocated including its id, start address, and size.</li>
+</ul>
+<h2 id="garbage-collection">Garbage collection</h2>
+<p>You will implement a Mark and Sweep Defragmenting/Mark-compact garbage collector, as described in class. This function is implemented by <code>compact()</code> in the object manager. So that we can evaluate your implementation, every time the garbage collector runs, print out the following statistics (to <code>stdout</code>):</p>
+<ul>
+<li>The number of objects that exist</li>
+<li>The current number of bytes in use</li>
+<li>The number of bytes collected</li>
+</ul>
+<h2 id="data-structures">Data structures</h2>
+<p>You must manage the tracking of allocated objects using an index, which will be implemented using a linked list. Each node in your linked list contains the information needed to manage its associated object. Note that the index is implemented inside <code>ObjectManager.c</code>, you don&rsquo;t need any additional files like <code>list.{h,c}</code>.</p>
+<h2 id="testing-your-object-manager">Testing your Object Manager</h2>
+<p>You will (eventually) be provided with several files (containing the <code>main()</code> function) for testing your object manager. You can start with <a href="main0.c"><code>main0.c</code></a> on the course website.</p>
+<p>In the meantime, you&rsquo;ll have to use some of your new found testing and debugging skills to ensure you code can handle anything a program may throw at it. At minimum, the code you hand in should apply the concepts of DbC, as required in A2 and A3. Note that the main files will arrive <em>very</em> close to the due date. If you wait until they&rsquo;re available, there&rsquo;s no way you&rsquo;ll finish the assignment on time.</p>
+<h2 id="other-comments">Other comments</h2>
+<ul>
+<li>Try to start the assignment as soon as possible.</li>
+<li>Test each feature as it is implemented. Create your own test cases to test your code.</li>
+<li>You will have multiple files, so a <code>Makefile</code> is required. You only need to include a rule for <code>main.c</code> so that you and the grader can swap in different main files by renaming and <code>touch</code>ing the file.</li>
+</ul>
+<h1 id="submitting-your-assignment">Submitting your assignment</h1>
+<p>Create a directory called <code>comp2160-a4-&lt;yourlastname&gt;-&lt;yourstudentid&gt;</code>. Since there&rsquo;s only one question this time, all of your files can go directly in this directory.</p>
+<p>Then run the command:</p>
+<div class="sourceCode" id="cb1">
+<pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">handin</span> 2160 a4 comp2160-a4-<span class="op">&lt;</span>yourlastname<span class="op">&gt;</span>-<span class="op">&lt;</span>yourstudentid<span class="op">&gt;</span></span></code></pre>
+</div>
+<ul>
+<li>You may optionally include a <code>README</code> file in the root of your directory that explains anything unusual about compiling or running your programs.</li>
+<li>You may resubmit your assignment as many times as you want, but <strong>only the latest</strong> submission will be kept.</li>
+<li>We only accept homework submissions via <code>handin</code>. Please <strong>do not</strong> e-mail your homework to the instructor or TAs &ndash; it will be ignored.</li>
+<li>You <strong>must</strong> submit an Honesty Declaration (digitally on UM Learn). Assignments submitted without a corresponding Honesty Declaration <strong>will not be graded</strong>.</li>
+<li>We reserve the right to refuse to grade the homework, or to deduct marks if these instructions are not followed.</li>
+</ul>
+<h1 id="evaluation">Evaluation</h1>
+<p>Your assignment is worth 36 points.</p>
+<p>Note that your code <strong>must</strong> compile &ndash; no part marks will be given for code that does not compile. Note further that your code must compile with <code>clang++</code>.</p>
+<p>Note further that your code <strong>must</strong> compile with <code>make</code>. Graders <strong>will not</strong> manually compile any code by running <code>clang</code> for this assignment, <em>even if</em> you write instructions in the <code>README</code>.</p>
+<h2 id="warnings">Warnings</h2>
+<p>The code you write should compile with <code>clang -Wall</code> <em>without</em> any warnings. A 1 point penalty will be applied to your score (before multiplication) for <em>each</em> warning that is emitted by the compiler.</p>
+<p>That said, exactly one warning will be ignored by the grader when you are using the <code>clang++</code> compiler:</p>
+<pre><code>clang: warning: treating 'c' input as 'c++' when in C++ mode, this behavior is
+deprecated [-Wdeprecated]</code></pre>
+<p>That warning is <strong>expected</strong>.</p>
+<h2 id="question-1">Question 1</h2>
+<p>The grading guide is available as a <a href="/d2l/common/dialogs/quickLink/quickLink.d2l?ou=408555&amp;type=rubric&amp;rCode=UManitoba-1051867" target="_blank" rel="noopener">rubric</a>.</p>
+</body>
+</html>
