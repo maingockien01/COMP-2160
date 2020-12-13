@@ -3,14 +3,13 @@
 // STUDENT NUMBER: 7876083
 // COURSE: COMP 2160, SECTION: A02
 // INSTRUCTOR: Dr. Eskicioglu
-// ASSIGNMENT: #4, QUESTION: #1
+// ASSIGNMENT: #4 
 //
 // REMARKS: linked list
 //---------------------------------------------------------
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
 
 #include "list.h"
 
@@ -22,16 +21,6 @@ void addNode (Node * node) {
     Node *iterator;
     
     iterator = head;
-    /*
-    //If item is duplicating 1 item in the table
-    while (iterator != NULL) {
-        if (iterator-> id == node-> id) {
-
-            return;
-        }
-        iterator = iterator->next;
-    }
-    */
 
     //If empty case
     if (head == NULL) {
@@ -40,21 +29,14 @@ void addNode (Node * node) {
        return;
     };
 
-    
-    assert(head != NULL);
-
     //Insert after the head
     while (iterator->next != NULL) {
        iterator = iterator->next;
     }
 
-    assert(iterator->next == NULL);
-
     //New item is greater than all items in table
     //Iterator is the tail of the table
     iterator->next = node;
-
-    assert(node->next == NULL);
 
     return ;
 }
@@ -62,6 +44,7 @@ void addNode (Node * node) {
 void removeNode (Ref id) {
     Node *iterator;
     Node *temp;
+
     iterator = head;
     
     //If empty table
@@ -123,7 +106,6 @@ Node *getNode (Ref id) {
         iterator = iterator->next;
     } 
 
-
     //Not found item
     return NULL;
 }
@@ -139,7 +121,6 @@ Node *nextNode () {
 
         return traverseNode;
     }; 
-
 
     if (traverseNode->next == NULL) {
         traverseNode = NULL;

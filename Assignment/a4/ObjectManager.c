@@ -1,9 +1,24 @@
+//------------------------------------------------------
+// NAME: Kien Mai
+// STUDENT NUMBER: 7876083
+// COURSE: COMP 2160
+// INSTRUCTOR Dr. Eskicioglu
+// ASSIGNMENT: #4
+//
+// REMARKS: ObjectManager implementation.
+//------------------------------------------------------
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<assert.h>
+#include<stdbool.h>
 
 #include "ObjectManager.h"
 #include "list.h"
+
+//------------------------------------------------------
+// VARIABLES
+//------------------------------------------------------
 
 void *buffer;
 ulong freePtr;
@@ -14,13 +29,13 @@ Ref nodeRef;
 // PROTOCOLS
 //------------------------------------------------------
 
+//ObjectManager hidden function
 void compact ();
 void destroyObject (Ref ref);
 
 // Helpers
 Ref createRef ();
-Node *allocateSpace (ulong size);
-void clearSpace (Node * node);
+Node *allocateSpace (ulong size); //Create a node 
 
 void printObject (Node *node);
 
@@ -29,21 +44,19 @@ void printObject (Node *node);
 //---------------------------------------------------------------
 
 Ref insertObject(ulong size) {
-    //Check if there is available space
-    //if no: defragment
-        //if still no after defragment return error
-    //otherwise
-    // allocate space
     if (buffer == NULL) {
+        fprintf(stderr, "ObjectManger has not been initiated\n");
         return NULL_REF;
     };
 
     if (size <= 0) {
+        fprintf(stderr, "The size of object is invalid!\n");
         return NULL_REF;
     };
     if (freePtr + size > MEMORY_SIZE) {
         compact ();
         if (freePtr + size > MEMORY_SIZE) { 
+            fprintf(stderr, "There is not enough available memory\n");
             return NULL_REF;
         };
     };
@@ -60,22 +73,25 @@ Ref insertObject(ulong size) {
 
 void *retrieveObject(Ref ref) {
     if (buffer == NULL) {
+        fprintf(stderr, "ObjectManger has not been initiated\n");
+        return NULL;
+    };
+
+    if (ref == NULL_REF) {
+        fprintf(stderr, "The ref input is invalid!\n");
         return NULL;
     };
 
     Node *node = getNode(ref);
 
-    if (ref == NULL_REF) {
-        return NULL;
-    };
-
     if (node == NULL) {
+        fprintf(stderr, "Found no object matching the given ref!\n");
         return NULL;
     };
 
     int start = node->start;
 
-    if (start < MEMORY_SIZE) {
+    if (start < MEMORY_SIZE && start >= 0) {
         uchar * tempBuffer = (uchar *) buffer;
         return &(tempBuffer[start]);
     } else {
@@ -85,6 +101,7 @@ void *retrieveObject(Ref ref) {
 
 void addReference (Ref ref) {
     if (buffer == NULL) {
+        fprintf(stderr, "ObjectManger has not been initiated\n");
         return ;
     };
 
@@ -100,6 +117,7 @@ void addReference (Ref ref) {
 
 void dropReference (Ref ref) {
     if (buffer == NULL) {
+        fprintf(stderr, "ObjectManger has not been initiated\n");
         return ;
     };
 
@@ -123,12 +141,20 @@ void initPool () {
 };
 
 void destroyPool () {
-    free(buffer);
+    if (buffer == NULL) {
+        fprintf(stderr, "ObjectManger has not been initiated\n");
+        return ;
+    };
 
+    free(buffer);
     clearList();
 };
 
 void dumpPool () {
+    if (buffer == NULL) {
+        fprintf(stderr, "ObjectManger has not been initiated\n");
+        return ;
+    };
     Node *iterator;
     iterator = nextNode ();
 
@@ -150,6 +176,10 @@ void dumpPool () {
 };
 
 void compact () {
+    if (buffer == NULL) {
+        fprintf(stderr, "ObjectManger has not been initiated\n");
+        return ;
+    };
     void *secondBuffer;
     uchar *secondTempBuffer;
     uchar *tempBuffer;
@@ -193,11 +223,10 @@ void compact () {
         existObject ++;
         currentBytesInUse += size;
 
-
         iterator = nextNode ();
     }
 
-    bytesCollected = freePtr - currentBytesInUse;
+    bytesCollected = freePtr - secondFreePtr;
 
     free(buffer);
     buffer = secondBuffer;
@@ -215,7 +244,6 @@ void destroyObject (Ref ref) {
         return;
     };
 
-    clearSpace(node);
     removeNode(ref);
 }
 
@@ -243,15 +271,6 @@ Node* allocateSpace (ulong size) {
 
 
     return newNode;
-}
-
-void clearSpace (Node *node) {
-    int i;
-    for (i = 0; i < node->size; i ++) {
-        //TODO: Clear byte
-        //free(buffer[i+node->start]);
-    }
-
 }
 
 Ref createRef () {
