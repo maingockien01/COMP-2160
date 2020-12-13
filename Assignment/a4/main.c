@@ -1,3 +1,14 @@
+//------------------------------------------------------
+// NAME: Kien Mai
+// STUDENT NUMBER: 7876083
+// COURSE: COMP 2160
+// INSTRUCTOR Dr. Eskicioglu
+// ASSIGNMENT: #4
+//
+// REMARKS: Test suits provied by Kien Mai.
+//------------------------------------------------------
+
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<assert.h>
@@ -203,9 +214,12 @@ void testCompactPartlyFull () {
 
     dumpPool();
 
+    printf("\nDrop ref of object -> destroy object2\n");
     dropReference(id2);
+
     dumpPool();
 
+    printf("\nInsert object4\n");
     id4 = insertObject(MEMORY_SIZE-200);
 
     dumpPool();
