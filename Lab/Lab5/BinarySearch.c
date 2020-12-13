@@ -52,7 +52,7 @@ int binarySearch (DataType t) {
     int start = 0 , end = n-1;
     int mid;
     
-    while (start < end) {
+    while (start <= end) {
         mid = (start+end)/2;
 
         if (array[mid] < t) {
